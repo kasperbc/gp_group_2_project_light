@@ -1,0 +1,2 @@
+Hello this file is here as a placeholder so that git will recognize this folder
+You may delete this file when something else has been put in this folder
