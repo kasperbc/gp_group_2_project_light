@@ -24,12 +24,6 @@ public class PlayerMovement : MonoBehaviour
        animator = GetComponent<Animator>(); /// Link the animator to the animator component
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     private void Update()
     {
@@ -56,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Jump & double jump (movement & animator)
-        /// Aim of the code: The player can jump when pressing "space", and can double jump when pressing "space" again, but can only double jump for once
+        /// Aim of the code: The player can jump when pressing "space", and can double jump when pressing "space" again, but can only double jump once
         /// The condition for jumping is the player needs to be on the ground; the condition for double jumping is the "doubleJump" status needs to be false
         /// The code loop 1 is to make the player jump + double jump
         /// The code loop 2 is to avoid the player from jumping again: he is not standing on the ground, so he can't jump; and the "doubleJump" value is true, so he can't double jump
