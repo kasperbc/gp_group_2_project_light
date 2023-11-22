@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene2Draft.unity
     guid: b1d462ee729cb7a4692b9c4d0e0f2ff0
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/SampleSceneFurnished.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
