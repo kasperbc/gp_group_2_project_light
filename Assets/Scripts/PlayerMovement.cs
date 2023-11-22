@@ -16,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded; /// Check if the player is on the ground. "Jump" can only be started when the player is on the ground                          
     private bool doubleJump; /// Check if the player is double jumping
 
+    [SerializeField] public bool isFlying;
+    public float flyingSpeed = 5f; // Speed of flying movement
+
     // Awake is called before start and quicker than start
     private void Awake()
     {
@@ -27,6 +30,29 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
+        if (isFlying)
+        {
+            FlyingMovement();
+        }
+        else
+        {
+            GroundMovement();
+        }
+    }
+
+    // method to check if the player is on the ground
+    private void OnCollisionEnter2D(Collision2D collision) 
+    {
+        if(collision.gameObject.tag == "Ground") /// if the player collides with an object with the tag "ground" (In our scene, the GroundTilemap is set with the tag "ground")
+        {
+            isGrounded = true; /// Then the method checking whether the player is on the ground is set to be true
+        }
+    }
+
+    private void GroundMovement()
+    {
+        body.gravityScale = 1; //enables the gravity for the character
         // Get the horizontal movement for the player by pressing A/D or left/right
         float horizontalInput = Input.GetAxis("Horizontal");
 
@@ -99,12 +125,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // method to check if the player is on the ground
-    private void OnCollisionEnter2D(Collision2D collision) 
+    private void FlyingMovement()
     {
-        if(collision.gameObject.tag == "Ground") /// if the player collides with an object with the tag "ground" (In our scene, the GroundTilemap is set with the tag "ground")
-        {
-            isGrounded = true; /// Then the method checking whether the player is on the ground is set to be true
-        }
+        body.gravityScale = 0; //disables the gravity for the character
+
+        // Get the horizontal movement for the player by pressing A/D or left/right
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        body.velocity = new Vector2(horizontalInput, verticalInput) * flyingSpeed;
+
     }
 }

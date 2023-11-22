@@ -168,8 +168,8 @@ MonoBehaviour:
   - {x: 0.5, y: 0.50000006, z: 0}
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
-  m_Mesh: {fileID: 1348550623}
-  m_InstanceId: 30438
+  m_Mesh: {fileID: 1621376552}
+  m_InstanceId: 34790
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}
@@ -2970,6 +2970,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6667050009241586845, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 7.882916
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703812222409930126, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99999505
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703812222409930126, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0031431187
+      objectReference: {fileID: 0}
     - target: {fileID: 6998825680144308217, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2979,7 +2991,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
---- !u!43 &1348550623
+--- !u!43 &1621376552
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

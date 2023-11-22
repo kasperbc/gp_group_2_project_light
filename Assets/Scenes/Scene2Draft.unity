@@ -740,8 +740,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00090003014, y: -0.004999995, z: 0}
-    m_Extent: {x: 0.9993, y: 0.9985, z: 0}
+    m_Center: {x: -0.0011499822, y: 0.0017499924, z: 0}
+    m_Extent: {x: 0.99735, y: 0.99685, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1246,6 +1246,18 @@ PrefabInstance:
     - target: {fileID: 5768169903447840954, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
       propertyPath: jumpspeed
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667050009241586845, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 5.9419584
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703812222409930126, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9999834
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703812222409930126, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0057647764
       objectReference: {fileID: 0}
     - target: {fileID: 6998825680144308217, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
       propertyPath: m_Name
@@ -3901,7 +3913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1911310942
 Transform:
   m_ObjectHideFlags: 0
