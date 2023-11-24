@@ -6,13 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class LightPowerUp : MonoBehaviour
 {
-  
-    public float radiusIncreaseAmount = 0.1f; // Amount by which the radius increases
     public GameObject objectToAffect; // Reference to the specific object you want to affect
 
     public Light2D light2DComponent; // Expose a public field for the Light2D component
 
     private const string LightRadiusKey = "LightRadius";
+    public float radiusIncreaseAmount = 2f; // Amount by which the radius increases
 
     // Start is called before the first frame update
     private void Start()
@@ -35,7 +34,7 @@ public class LightPowerUp : MonoBehaviour
             IncreaseRadius();
             Debug.Log("Was interaction with light");
 
-            Invoke("ChangeLevel", 5f);
+            Invoke("ChangeLevel", 4f);
         }
     }
 
@@ -45,6 +44,7 @@ public class LightPowerUp : MonoBehaviour
         light2DComponent.pointLightOuterRadius += radiusIncreaseAmount;
         GameMeneger.Instance.playerLightRadius = light2DComponent.pointLightOuterRadius;
     }
+
 
     private void ChangeLevel()
     {

@@ -10,6 +10,10 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
+    public void GoToMainMenu() //that will load scene with +1 index to mainmenu scene in build settings hierarchy
+    {
+        SceneManager.LoadScene(0);
+    }
 
     public void QuitGame() //that will close the window
     {

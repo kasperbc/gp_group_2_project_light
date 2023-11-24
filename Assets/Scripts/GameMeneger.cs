@@ -12,6 +12,8 @@ public class GameMeneger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("GameManager Instance: " + Instance); // Check if Instance is set
+
         if (Instance == null)
         {
             Instance = this;
@@ -20,7 +22,7 @@ public class GameMeneger : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
+        }                                                        
     }
 
     // Update is called once per frame
