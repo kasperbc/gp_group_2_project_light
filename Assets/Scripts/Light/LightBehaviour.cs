@@ -23,7 +23,7 @@ public class LightBehaviour : MonoBehaviour
     void Start()
     {
         // Get the 2D light component
-        lightEmitter = transform.GetComponent<Light2D>();
+        lightEmitter = transform.GetChild(0).GetComponent<Light2D>();
     }
 
     void Update()
