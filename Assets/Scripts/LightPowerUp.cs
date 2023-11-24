@@ -1,24 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal; // Include this namespace for Light2D
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class LightPowerUp : MonoBehaviour
 {
-    public float defaultRadius = 5.0f; // Default radius when the game starts or restarts
+  
     public float radiusIncreaseAmount = 0.1f; // Amount by which the radius increases
     public GameObject objectToAffect; // Reference to the specific object you want to affect
 
-    private Light2D light2DComponent;
-    private bool isInteracting = false;
+    public Light2D light2DComponent; // Expose a public field for the Light2D component
 
     private const string LightRadiusKey = "LightRadius";
 
     // Start is called before the first frame update
     private void Start()
     {
-        light2DComponent = GetComponent<Light2D>();
 
         if (light2DComponent == null)
         {
@@ -27,54 +25,29 @@ public class LightPowerUp : MonoBehaviour
             return;
         }
 
-        float savedRadius = PlayerPrefs.GetFloat(LightRadiusKey, defaultRadius);
-        light2DComponent.pointLightOuterRadius = savedRadius;
-    }
-
-    private void SaveCurrentRadius()
-    {
-        PlayerPrefs.SetFloat(LightRadiusKey, light2DComponent.pointLightOuterRadius);
-        PlayerPrefs.Save();
+        light2DComponent.pointLightOuterRadius = GameMeneger.Instance.playerLightRadius;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && other.gameObject == objectToAffect)
+        if (other.CompareTag("Light") && other.gameObject == objectToAffect)
         {
-            isInteracting = true;
             IncreaseRadius();
-        }
-    }
+            Debug.Log("Was interaction with light");
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player") && other.gameObject == objectToAffect)
-        {
-            isInteracting = false;
-            SaveCurrentRadius(); // Save the current radius when interaction ends
+            Invoke("ChangeLevel", 5f);
         }
     }
 
     private void IncreaseRadius()
     {
-        if (light2DComponent != null)
-        {
-            light2DComponent.pointLightOuterRadius += radiusIncreaseAmount;
-        }
+        
+        light2DComponent.pointLightOuterRadius += radiusIncreaseAmount;
+        GameMeneger.Instance.playerLightRadius = light2DComponent.pointLightOuterRadius;
     }
 
-    private void Update()
+    private void ChangeLevel()
     {
-        if (isInteracting)
-        {
-            IncreaseRadius();
-        }
-    }
-
-    public void ResetLightRadius()
-    {
-        light2DComponent.pointLightOuterRadius = defaultRadius;
-        PlayerPrefs.SetFloat(LightRadiusKey, defaultRadius); // Reset and save default radius
-        PlayerPrefs.Save();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

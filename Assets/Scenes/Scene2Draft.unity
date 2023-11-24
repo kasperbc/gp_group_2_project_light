@@ -685,10 +685,9 @@ GameObject:
   - component: {fileID: 119513134}
   - component: {fileID: 119513133}
   - component: {fileID: 119513135}
-  - component: {fileID: 119513136}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -760,8 +759,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &119513135
-BoxCollider2D:
+--- !u!58 &119513135
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -793,45 +792,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!50 &119513136
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119513132}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Radius: 0.49999997
 --- !u!1 &239067527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,6 +1128,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4228020210676230717, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
   m_PrefabInstance: {fileID: 968727126}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &816108081 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6667050009241586845, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+  m_PrefabInstance: {fileID: 968727126}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &949288172 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5694907936857210310, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
@@ -1244,12 +1217,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 705564731663758480, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 705564731663758480, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
       propertyPath: orthographic
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 705564731663758480, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
       propertyPath: orthographic size
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 705564731663758480, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.03773582
+      objectReference: {fileID: 0}
+    - target: {fileID: 705564731663758480, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.03773582
+      objectReference: {fileID: 0}
+    - target: {fileID: 705564731663758480, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.03773582
       objectReference: {fileID: 0}
     - target: {fileID: 4228020210676230717, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1300,8 +1289,20 @@ PrefabInstance:
       value: Light
       objectReference: {fileID: 0}
     - target: {fileID: 6667050009241586845, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667050009241586845, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667050009241586845, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667050009241586845, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 5.9419584
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6667050009241586845, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
       propertyPath: m_ShadowIntensityEnabled
@@ -3026,9 +3027,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948d78d50a6a8134ab335e75cff3fc9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultRadius: 5
   radiusIncreaseAmount: 0.1
   objectToAffect: {fileID: 119513132}
+  light2DComponent: {fileID: 816108081}
 --- !u!1 &1755195345
 GameObject:
   m_ObjectHideFlags: 0

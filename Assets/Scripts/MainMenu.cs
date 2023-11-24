@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    private string gameSceneName = "Scene1"; // Name of the game scene
+    //private string gameSceneName = "Scene1"; // Name of the game scene
 
     public void ContinueGame()
     {
@@ -26,6 +26,6 @@ public class MainMenu : MonoBehaviour
         // You should have a system in place to manage saved game data.
 
         // Load the game scene where you left off.
-        SceneManager.LoadScene(gameSceneName);
+        //SceneManager.LoadScene(gameSceneName);
     }
 }
