@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    private string gameSceneName = "SampleScene"; // Name of the game scene
+    private string gameSceneName = "Scene1"; // Name of the game scene
 
     public void ContinueGame()
     {
