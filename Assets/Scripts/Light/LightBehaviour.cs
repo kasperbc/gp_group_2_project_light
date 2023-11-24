@@ -22,8 +22,24 @@ public class LightBehaviour : MonoBehaviour
     public int rayAmount = 5;
     void Start()
     {
+        // Disable the script if it has no children
+        if (transform.childCount == 0)
+        {
+            Debug.LogWarning("No child objects found! Disabling script.");
+            enabled = false;
+            return;
+        }
+
         // Get the 2D light component
         lightEmitter = transform.GetChild(0).GetComponent<Light2D>();
+
+        // Disable the script if the light component is missing
+        if (lightEmitter == null)
+        {
+            Debug.LogWarning("No Light2D component found on child object! Disabling script.");
+            enabled = false;
+            return;
+        }
     }
 
     void Update()
