@@ -13847,6 +13847,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6667050009241586845, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667050009241586845, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
       propertyPath: m_PointLightOuterRadius
       value: 2
       objectReference: {fileID: 0}
@@ -13870,10 +13874,44 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6998825680144308217, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1709215360}
     - targetCorrespondingSourceObject: {fileID: 5694907936857210310, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 109631747}
   m_SourcePrefab: {fileID: 100100000, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+--- !u!1 &1709215358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6998825680144308217, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+  m_PrefabInstance: {fileID: 1709215357}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1709215359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6667050009241586845, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+  m_PrefabInstance: {fileID: 1709215357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1709215360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709215358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948d78d50a6a8134ab335e75cff3fc9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radiusIncreaseAmount: 0.1
+  objectToAffect: {fileID: 2850447579011303257}
+  light2DComponent: {fileID: 1709215359}
 --- !u!1 &1761292250
 GameObject:
   m_ObjectHideFlags: 0
@@ -19786,7 +19824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4523830723065921875, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
       propertyPath: m_TagString
-      value: Ground
+      value: Light
       objectReference: {fileID: 0}
     - target: {fileID: 4821775999745368659, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
       propertyPath: m_BodyType
@@ -19872,11 +19910,20 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.016361356
       objectReference: {fileID: 0}
+    - target: {fileID: 8504373665831409943, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
+--- !u!1 &2850447579011303257 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4523830723065921875, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
+  m_PrefabInstance: {fileID: 2850447579011303256}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
