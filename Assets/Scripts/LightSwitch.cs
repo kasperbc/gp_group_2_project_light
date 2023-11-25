@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 
 public class LightSwitch : MonoBehaviour
 {
-    public GameObject intIcon, myLight, levelUpCube;
+    public GameObject intIcon, levelUpCube;
     public bool toggle;
     public AudioSource lightSwitchSound;
 
@@ -39,21 +39,39 @@ public class LightSwitch : MonoBehaviour
 
     private void ToggleSwitch()
     {
+        LightSwitchRotate[] lightSwitches = FindObjectsOfType<LightSwitchRotate>();
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (toggle == true)
             {
-                myLight.SetActive(true);
-                levelUpCube.SetActive(false);
-                lightSwitchSound.Play();
+                if (levelUpCube != null)
+                    levelUpCube.SetActive(false);
+
+                if (lightSwitchSound != null)
+                    lightSwitchSound.Play();
+
+                foreach (LightSwitchRotate lightSwitch in lightSwitches)
+                {
+                    lightSwitch.RotateToTarget();
+                }
+
                 Debug.Log("Light On");
                 Debug.Log("Level up cube N");
             }
             if (toggle == false)
             {
-                myLight.SetActive(false);
-                levelUpCube.SetActive(true);
-                lightSwitchSound.Play();
+                if (levelUpCube != null)
+                    levelUpCube.SetActive(true);
+
+                if (lightSwitchSound != null)
+                    lightSwitchSound.Play();
+
+                foreach (LightSwitchRotate lightSwitch in lightSwitches)
+                {
+                    lightSwitch.RotateToInitial();
+                }
+
                 Debug.Log("Light Off");
                 Debug.Log("Level up cube Y");
             }
