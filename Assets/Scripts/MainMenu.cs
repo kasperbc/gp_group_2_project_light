@@ -10,6 +10,10 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
+    public void GoToMainMenu() //that will load scene with +1 index to mainmenu scene in build settings hierarchy
+    {
+        SceneManager.LoadScene(0);
+    }
 
     public void QuitGame() //that will close the window
     {
@@ -17,7 +21,7 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    private string gameSceneName = "SampleScene"; // Name of the game scene
+    //private string gameSceneName = "Scene1"; // Name of the game scene
 
     public void ContinueGame()
     {
@@ -26,6 +30,6 @@ public class MainMenu : MonoBehaviour
         // You should have a system in place to manage saved game data.
 
         // Load the game scene where you left off.
-        SceneManager.LoadScene(gameSceneName);
+        //SceneManager.LoadScene(gameSceneName);
     }
 }

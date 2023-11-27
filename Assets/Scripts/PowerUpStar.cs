@@ -7,6 +7,7 @@ class PowerUpStar : CollectibleItem
    
     public float flyingDuration = 5f; // Duration of flying power-up in seconds
     private PlayerMovement player;
+    public AudioSource powerUpSound;
 
     protected override void OnItemCollected()
 
@@ -14,6 +15,7 @@ class PowerUpStar : CollectibleItem
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         // Enable flying mode
         player.isFlying = true;
+        powerUpSound.Play();
         StartCoroutine(DisableFlyingAfterDelay());
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
