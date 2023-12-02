@@ -24,7 +24,7 @@ public class GameHandller : MonoBehaviour
         HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
         healthBar.Setup(healthSystem);
 
-        Debug.Log("Health:" + healthSystem.GetHealth());
+        Debug.Log("maxHealth:" + healthSystem.GetHealth());
 
 
     }

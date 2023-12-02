@@ -3,13 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Ground
-  - Light
-<<<<<<< HEAD
-  - InteractiveObj
-=======
->>>>>>> a61760d084b486cfc1b517c574d00c649e7f1c8e
+  tags: []
   layers:
   - Default
   - TransparentFX
