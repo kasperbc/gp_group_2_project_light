@@ -1909,7 +1909,7 @@ Transform:
   m_GameObject: {fileID: 424582941}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.47, y: 1.27, z: 2.981422}
+  m_LocalPosition: {x: 10.8, y: 0.7, z: 2.981422}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13837,8 +13837,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6667050009241586845, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667050009241586845, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6998825680144308217, guid: 99619d902af0bbd458e67ef7c1f844bb, type: 3}
       propertyPath: m_Name
@@ -14313,6 +14317,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1839571647 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4523830723065921875, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
+  m_PrefabInstance: {fileID: 2850447579011303256}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1873859353
 GameObject:
   m_ObjectHideFlags: 0
@@ -14323,6 +14332,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1873859355}
   - component: {fileID: 1873859354}
+  - component: {fileID: 1873859356}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -14358,6 +14368,21 @@ Transform:
   - {fileID: 1946774520}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1873859356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873859353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961c5a889f32c3b4695e361f86b11c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1709215358}
+  lightSwitch: {fileID: 1839571647}
+  distance: 0
 --- !u!1 &1875220667
 GameObject:
   m_ObjectHideFlags: 0
@@ -19835,17 +19860,37 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5285723178146240740, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1709215358}
+    - target: {fileID: 5285723178146240740, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
       propertyPath: intIcon
       value: 
-      objectReference: {fileID: 424582941}
+      objectReference: {fileID: 1839571647}
     - target: {fileID: 5285723178146240740, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
       propertyPath: myLight
       value: 
       objectReference: {fileID: 975749890}
     - target: {fileID: 5285723178146240740, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
+      propertyPath: distance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285723178146240740, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
+      propertyPath: endPoint
+      value: 
+      objectReference: {fileID: 1839571647}
+    - target: {fileID: 5285723178146240740, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
+      propertyPath: startPoint
+      value: 
+      objectReference: {fileID: 1709215358}
+    - target: {fileID: 5285723178146240740, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
       propertyPath: levelUpCube
       value: 
       objectReference: {fileID: 1908348216}
+    - target: {fileID: 5285723178146240740, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
+      propertyPath: lightSwitch
+      value: 
+      objectReference: {fileID: 424582941}
     - target: {fileID: 5285723178146240740, guid: 33ffa2217d749d7449d5481884f1c08d, type: 3}
       propertyPath: lightSwitchSound
       value: 
