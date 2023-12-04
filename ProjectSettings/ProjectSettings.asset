@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Jamk Game Productions
   productName: GP Group 1.2 Project
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
