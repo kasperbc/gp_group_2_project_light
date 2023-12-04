@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,18 +11,18 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     public Image Health_Background, Health_Center, Health_Foreground;
-    public int damageAmount = 2;
-    public int healAmount = 2;
+    public float damageAmount = 0.1f;
+    public float healAmount = 0.1f;
     public float fadeTime = 2f;
-    private readonly int maxHealth = 100;
-    private int currentHealth = 100;
-    private float temp;
+    private readonly float maxHealth = 100;
+    private float currentHealth = 100;
+    private float damageDiff;
+    private float healDiff;
     private bool startDamage = false;
     private bool startHeal = false;
-    private bool isAutoHeal = false;
-    private bool isRunAutoHeal = false;
+    //private bool isAutoHeal = false;
 
-    public int CurrentHealth
+    public float CurrentHealth
     {
         get
         {
@@ -49,39 +48,43 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        Health_Background.fillAmount = 1;
-        Health_Center.fillAmount = Health_Background.fillAmount;
-        Health_Foreground.fillAmount = Health_Background.fillAmount;
-    }
-
-    void FixedUpdate()
-    {
-        if (isAutoHeal && CurrentHealth < maxHealth)
-        {
-            CurrentHealth += healAmount;
-            Health_Center.fillAmount = CurrentHealth / maxHealth;
-            temp = Health_Center.fillAmount - Health_Foreground.fillAmount;
-            startHeal = true;
-            Debug.Log("Heal: " + healAmount);
-        }
-
-        if (!isAutoHeal && !isRunAutoHeal)
-        {
-            StartCoroutine(RunAutoHeal());
-        }
+        Health_Center.fillAmount = 1;
+        Health_Foreground.fillAmount = Health_Center.fillAmount;
     }
 
     void Update()
     {
         FadeDamage(Health_Foreground.fillAmount, fadeTime);
         FadeHeal(Health_Center.fillAmount, fadeTime);
+        if (CurrentHealth < maxHealth)
+        {
+            TakeHeal();
+        }
     }
 
+    public void TakeDamage()
+    {
+        CurrentHealth -= damageAmount;
+        Health_Foreground.fillAmount = CurrentHealth / maxHealth;
+        damageDiff = Health_Center.fillAmount - Health_Foreground.fillAmount;
+        startDamage = true;
+        Debug.Log("Damage: " + damageAmount);
+    }
+
+    public void TakeHeal()
+    {
+        CurrentHealth += healAmount;
+        Health_Center.fillAmount = CurrentHealth / maxHealth;
+        healDiff = Health_Center.fillAmount - Health_Foreground.fillAmount;
+        startHeal = true;
+        Debug.Log("Heal: " + healAmount);
+    }
+    
     private void FadeDamage(float endValue, float duration)
     {
         if (startDamage)
         {
-            Health_Center.fillAmount -= (temp / duration) * Time.deltaTime;
+            Health_Center.fillAmount -= damageDiff / duration * Time.deltaTime;
             if (Health_Center.fillAmount <= endValue)
             {
                 startDamage = false;
@@ -93,7 +96,8 @@ public class Health : MonoBehaviour
     {
         if (startHeal)
         {
-            Health_Foreground.fillAmount += (temp / duration) * Time.deltaTime;
+
+            Health_Foreground.fillAmount += healDiff / duration * Time.deltaTime;
             if (Health_Foreground.fillAmount >= endValue)
             {
                 startHeal = false;
@@ -101,45 +105,24 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void TakeDamage()
-    {
-        CurrentHealth -= damageAmount;
-        Health_Foreground.fillAmount = CurrentHealth / maxHealth;
-        temp = Health_Center.fillAmount - Health_Foreground.fillAmount;
-        startDamage = true;
-        Debug.Log("Damage: " + damageAmount);
-    }
+    //public void AutoHeal(bool isHit)
+    //{
+    //    if (CurrentHealth < maxHealth)
+    //    {
+    //        isAutoHeal = true;
+    //        Debug.Log("Auto heal is available!");
+    //    }
 
-    public void TakeHeal()
-    {
-        CurrentHealth += healAmount;
-        Health_Center.fillAmount = CurrentHealth / maxHealth;
-        temp = Health_Center.fillAmount - Health_Foreground.fillAmount;
-        startHeal = true;
-        Debug.Log("Heal: " + healAmount);
-    }
+    //    if (isHit == true)
+    //    {
+    //        isAutoHeal = false;
+    //        Debug.Log("Auto heal is unavailable!");
+    //    }
+    //}
 
-    public void AutoHeal(bool isHit)
-    {
-        if (isHit == false && CurrentHealth < maxHealth)
-        {
-            isAutoHeal = true;
-            Debug.Log("Auto heal is available!");
-        }
-        else if (isHit == true || CurrentHealth == maxHealth)
-        {
-            isAutoHeal = false;
-            Debug.Log("Auto heal is unavailable!");
-        }
-    }
-
-    IEnumerator RunAutoHeal()
-    {
-        isRunAutoHeal = true;
-        yield return new WaitForSeconds(2);
-        while (CurrentHealth < maxHealth)
-        {
-            TakeHeal();
-        }
-    }
+    //IEnumerator RunAutoHeal()
+    //{
+    //    isAutoHeal = true;
+    //    yield return new WaitForSeconds(2);
+    //}
 }
