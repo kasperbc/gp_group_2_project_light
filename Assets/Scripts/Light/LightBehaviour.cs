@@ -73,12 +73,28 @@ public class LightBehaviour : MonoBehaviour
                     // TODO Logic for when the player is hit by a ray
                     Debug.Log("Hit player!");
                     debugColor = Color.red;
+                    LightAttack();
                 }
             }
-
             // Draw a line of the ray in the scene view (invisible to the player, used only for debugging)
             // Debug.DrawRay doesn't work exactly like Physics2D.Raycast so it's not 100% accurate but close enough
             Debug.DrawRay(transform.position, rayDirection * rayDistance, debugColor, 0);
         }
+
+        AutoHealMsg();
     }
+
+    private void LightAttack()
+    {
+        GameObject obj = GameObject.FindGameObjectWithTag("Player");
+        obj.SendMessage("TakeDamage");
+        obj.SendMessage("AutoHeal", true);
+    }
+
+    public void AutoHealMsg()
+    {
+        GameObject obj = GameObject.FindGameObjectWithTag("Player");
+        obj.SendMessage("AutoHeal", false);
+    }
+
 }

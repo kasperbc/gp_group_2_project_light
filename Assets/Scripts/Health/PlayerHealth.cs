@@ -55,7 +55,7 @@ public class PlayerHealth : MonoBehaviour
 //    if (other.gameObject.tag == "Light")
 //    {
 
-//        TakeDamage(damage);
+//        TakeDamage(damageAmount);
 //        Debug.Log("Hit!");
 //        GameObject fill = GameObject.Find("Fill");
 //        Image imageHealth = fill.GetComponent<Image>();

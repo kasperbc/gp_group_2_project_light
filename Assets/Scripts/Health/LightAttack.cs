@@ -6,7 +6,7 @@ public class LightAttack : MonoBehaviour
 //    private GameObject player;
 //    private bool collideWithPlayer;
 
-//    [SerializeField] public float damage = 10;
+//    [SerializeField] public float damageAmount = 10;
 
 //    void Awake()
 //    {
@@ -22,7 +22,7 @@ public class LightAttack : MonoBehaviour
 //        if (other.gameObject == player && health != null)
 //        {
 //            collideWithPlayer = true;
-//            health.TakeDamage(damage * Time.deltaTime);
+//            health.TakeDamage(damageAmount * Time.deltaTime);
 //        }
 //        Debug.Log("Enter collision with player");
 //    }
@@ -57,11 +57,11 @@ public class LightAttack : MonoBehaviour
     //    Debug.Log("Exit trigger with player");
     //}
 
-    //private void Attack()
+    //private void LightAttack()
     //{
     //    if (collideWithPlayer)
     //    {
-    //        player.GetComponent<PlayerHealth>().TakeDamage(damage * Time.deltaTime);
+    //        player.GetComponent<PlayerHealth>().TakeDamage(damageAmount * Time.deltaTime);
     //    }
     //}
 

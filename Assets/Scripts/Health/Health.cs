@@ -1,23 +1,29 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 1. maxHealth's data type is float, maxHealth is between 0-100f.
+/// 2. while it calculated by percentage, and health regains by time.
+/// 3. maxHealth can be decreased under the attacks from objects, e.g. the lights.
+/// 4. maxHealth can be increased by time after leaving from the light.
+/// </summary>
+
 public class Health : MonoBehaviour
 {
-    public UnityEngine.UI.Image Health_Background, Health_Damage, Health_Heal;
-    public float damage;
-    public float heal;
-    public float maxHealth = 100f;
+    public Image Health_Background, Health_Center, Health_Foreground;
+    public int damageAmount = 2;
+    public int healAmount = 2;
+    public float fadeTime = 2f;
+    private readonly int maxHealth = 100;
+    private int currentHealth = 100;
+    private float temp;
     private bool startDamage = false;
     private bool startHeal = false;
-    [SerializeField]
-    public float fadeTime;
-    private float temp;
-    private float currentHealth = 100f;
+    private bool isAutoHeal = false;
+    private bool isRunAutoHeal = false;
 
-    public float CurrentHealth
+    public int CurrentHealth
     {
         get
         {
@@ -33,12 +39,10 @@ public class Health : MonoBehaviour
             {
                 currentHealth = maxHealth;
             }
+            else
             {
                 currentHealth = value;
             }
-            //Health_Damage.fillAmount = currentHealth / maxHealth;
-            //temp = Health_Background.fillAmount - Health_Damage.fillAmount;
-            //startDamage = true;
             Debug.Log(currentHealth);
         }
     }
@@ -46,42 +50,51 @@ public class Health : MonoBehaviour
     void Start()
     {
         Health_Background.fillAmount = 1;
-        Health_Damage.fillAmount = Health_Background.fillAmount;
-        Health_Heal.fillAmount = Health_Background.fillAmount;
+        Health_Center.fillAmount = Health_Background.fillAmount;
+        Health_Foreground.fillAmount = Health_Background.fillAmount;
+    }
+
+    void FixedUpdate()
+    {
+        if (isAutoHeal && CurrentHealth < maxHealth)
+        {
+            CurrentHealth += healAmount;
+            Health_Center.fillAmount = CurrentHealth / maxHealth;
+            temp = Health_Center.fillAmount - Health_Foreground.fillAmount;
+            startHeal = true;
+            Debug.Log("Heal: " + healAmount);
+        }
+
+        if (!isRunAutoHeal && !isRunAutoHeal)
+        {
+            StartCoroutine(RunAutoHeal());
+        }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            TakeDamage();
-            FadeDamage(Health_Background.fillAmount, fadeTime);
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            TakeHeal();
-            FadeHeal(Health_Heal.fillAmount, fadeTime);
-        }
+        FadeDamage(Health_Foreground.fillAmount, fadeTime);
+        FadeHeal(Health_Center.fillAmount, fadeTime);
     }
 
-    public void FadeDamage(float endValue, float duration)
+    private void FadeDamage(float endValue, float duration)
     {
         if (startDamage)
         {
-            Health_Damage.fillAmount -= (temp / duration) * Time.deltaTime;
-            if (Health_Damage.fillAmount <= endValue)
+            Health_Center.fillAmount -= (temp / duration) * Time.deltaTime;
+            if (Health_Center.fillAmount <= endValue)
             {
                 startDamage = false;
             }
         }
     }
 
-    public void FadeHeal(float endValue, float duration)
+    private void FadeHeal(float endValue, float duration)
     {
         if (startHeal)
         {
-            Health_Heal.fillAmount += (temp / duration) * Time.deltaTime;
-            if (Health_Heal.fillAmount >= endValue)
+            Health_Foreground.fillAmount += (temp / duration) * Time.deltaTime;
+            if (Health_Foreground.fillAmount >= endValue)
             {
                 startHeal = false;
             }
@@ -90,22 +103,55 @@ public class Health : MonoBehaviour
 
     public void TakeDamage()
     {
-        damage = 10f;
-        CurrentHealth -= damage;
-        Health_Damage.fillAmount = CurrentHealth / maxHealth;
-        Health_Heal.fillAmount = Health_Damage.fillAmount;
+        CurrentHealth -= damageAmount;
+        Health_Foreground.fillAmount = CurrentHealth / maxHealth;
+        temp = Health_Center.fillAmount - Health_Foreground.fillAmount;
         startDamage = true;
-        Debug.Log("Damage: " + damage);
+        Debug.Log("Damage: " + damageAmount);
     }
 
     public void TakeHeal()
     {
+        if (isAutoHeal)
+        {
+            int diff = (CurrentHealth - maxHealth) / healAmount;
+            for (int i = 0; i <= diff; i++)
+            {
+                CurrentHealth += healAmount;
+                Health_Center.fillAmount = CurrentHealth / maxHealth;
+                temp = Health_Center.fillAmount - Health_Foreground.fillAmount;
+                startHeal = true;
+                Debug.Log("Heal: " + healAmount);
+            }
+        }
+        else
+        {
+            Debug.Log("Heal is unavailable!");
+        }
+    }
 
-        heal = 5f;
-        CurrentHealth += heal;
-        Health_Heal.fillAmount = CurrentHealth / maxHealth;
-        Health_Damage.fillAmount = Health_Heal.fillAmount;
-        startHeal = true;
-        Debug.Log("Heal: " + heal);
+    public void AutoHeal(bool isHit)
+    {
+        if (isHit == false && CurrentHealth < maxHealth)
+        {
+            isAutoHeal = true;
+            Debug.Log("Auto heal is available!");
+        }
+        else if (isHit == true || CurrentHealth == maxHealth)
+        {
+            isAutoHeal = false;
+            Debug.Log("Auto heal is unavailable!");
+        }
+    }
+
+    IEnumerator RunAutoHeal()
+    {
+        isRunAutoHeal = true;
+        yield return new WaitForSeconds(2);
+        while (CurrentHealth < maxHealth) 
+        {
+            TakeHeal();
+
+        }
     }
 }
