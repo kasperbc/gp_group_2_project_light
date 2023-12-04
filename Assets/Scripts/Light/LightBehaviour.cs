@@ -75,13 +75,14 @@ public class LightBehaviour : MonoBehaviour
                     debugColor = Color.red;
                     LightAttack();
                 }
+                AutoHealMsg();
             }
+            
             // Draw a line of the ray in the scene view (invisible to the player, used only for debugging)
             // Debug.DrawRay doesn't work exactly like Physics2D.Raycast so it's not 100% accurate but close enough
             Debug.DrawRay(transform.position, rayDirection * rayDistance, debugColor, 0);
         }
-
-        AutoHealMsg();
+        
     }
 
     private void LightAttack()

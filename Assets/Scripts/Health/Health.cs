@@ -65,7 +65,7 @@ public class Health : MonoBehaviour
             Debug.Log("Heal: " + healAmount);
         }
 
-        if (!isRunAutoHeal && !isRunAutoHeal)
+        if (!isAutoHeal && !isRunAutoHeal)
         {
             StartCoroutine(RunAutoHeal());
         }
@@ -112,22 +112,11 @@ public class Health : MonoBehaviour
 
     public void TakeHeal()
     {
-        if (isAutoHeal)
-        {
-            int diff = (CurrentHealth - maxHealth) / healAmount;
-            for (int i = 0; i <= diff; i++)
-            {
-                CurrentHealth += healAmount;
-                Health_Center.fillAmount = CurrentHealth / maxHealth;
-                temp = Health_Center.fillAmount - Health_Foreground.fillAmount;
-                startHeal = true;
-                Debug.Log("Heal: " + healAmount);
-            }
-        }
-        else
-        {
-            Debug.Log("Heal is unavailable!");
-        }
+        CurrentHealth += healAmount;
+        Health_Center.fillAmount = CurrentHealth / maxHealth;
+        temp = Health_Center.fillAmount - Health_Foreground.fillAmount;
+        startHeal = true;
+        Debug.Log("Heal: " + healAmount);
     }
 
     public void AutoHeal(bool isHit)
@@ -148,10 +137,9 @@ public class Health : MonoBehaviour
     {
         isRunAutoHeal = true;
         yield return new WaitForSeconds(2);
-        while (CurrentHealth < maxHealth) 
+        while (CurrentHealth < maxHealth)
         {
             TakeHeal();
-
         }
     }
 }
